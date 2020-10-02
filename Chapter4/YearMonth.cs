@@ -17,7 +17,7 @@ namespace Chapter4
         public YearMonth(int year, int month)
         {
             Year = year;
-            Year = month;
+            Month = month;
         }
 
         //4.1.2
@@ -36,14 +36,13 @@ namespace Chapter4
         {
             if (12 == this.Month)
             {
-                return new YearMonth(this.Year++, this.Month = 1);
+                return new YearMonth(this.Year+1, 1);
             }
             else
             {
-                return new YearMonth(this.Year, this.Month++);
+                return new YearMonth(this.Year, this.Month+1);
             }
         }
-
 
         //4.1.4
         //ToString()メソッドのオーバーライド
