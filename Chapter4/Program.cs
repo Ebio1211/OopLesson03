@@ -60,10 +60,9 @@ namespace Chapter4
         {
             var yearmonth = FindFirst21C(ymCollection);
 
-            var s = yearmonth == null ? "21世紀は存在しません" : yearmonth.ToString();
+            var s = yearmonth == null ? "21世紀のデータは存在しません" : yearmonth.ToString();
             Console.WriteLine(s);
         }
-
         //4-2-5
         private static void Exercise2_5(YearMonth[] ymCollection)
         {
