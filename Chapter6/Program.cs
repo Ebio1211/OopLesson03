@@ -10,7 +10,8 @@ namespace Chapter6
     {
         static void Main(string[] args)
         {
-            var numbers = new int[] { 5,10,17,9,3,21,10,40,21,3,35 };
+            #region 6-1
+            var numbers = new int[] { 5,10,17,9,3,21,10,40,21,3,35 }; // 40,35,21,21,17,10,10,9,5,3,3,
 
             //6-1-1
             Console.WriteLine("---6.1.1---");
@@ -29,7 +30,6 @@ namespace Chapter6
                 Console.Write(number + " ");
             }
 
-
             //6-1-3
             Console.WriteLine("\n---6.1.3---");
             numbers.Select(n => n.ToString()).ToList().ForEach(s => Console.Write(s + " "));
@@ -40,10 +40,11 @@ namespace Chapter6
 
             //6-1-5
             Console.WriteLine("\n---6.1.5---");
-            var count = numbers.Distinct().Count(n => n > 10);
-            Console.WriteLine(count);
+            Console.WriteLine(numbers.Distinct().Count(n => n > 10));
 
-            //6-2
+            #endregion
+
+            #region 6-2
             Console.WriteLine("\n----------6.2-------------");
             var books = new List<Book> {
                 new Book { Title = "C#プログラミングの新常識", Price = 3800, Pages = 378 },
@@ -57,11 +58,9 @@ namespace Chapter6
 
             //6-2-1
             Console.WriteLine("\n---6.2.1---");
-            var book = books.Where(s => s.Title == "ワンダフル・C#ライフ");
-            foreach (var s in book)
-            {
-                Console.WriteLine($"価格：{s.Price}　ページ数：{s.Pages}");
-            }
+            var book = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
+            if(book != null)
+                Console.WriteLine($"価格：{book.Price}円　ページ数：{book.Pages}");
 
             //6-2-2
             Console.WriteLine("\n---6.2.2---");
@@ -74,7 +73,9 @@ namespace Chapter6
 
             //6-2-4
             Console.WriteLine("\n---6.2.4---");
-            Console.WriteLine(books.FirstOrDefault(s => s.Price >= 4000).Title);
+            var booktt = books.FirstOrDefault(s => s.Price >= 4000).Title;
+            if (book != null)
+                Console.WriteLine(booktt);
 
             //6-2-5
             Console.WriteLine("\n---6.2.5---");
@@ -83,13 +84,14 @@ namespace Chapter6
             //6-2-6
             Console.WriteLine("\n---6.2.6---");
             books.Where(s => s.Pages >= 400).OrderByDescending(s => s.Price)
-                .ToList().ForEach(s=>Console.WriteLine($"タイトル：{s.Title} 価格：{s.Price}"));
+                .ToList().ForEach(s=>Console.WriteLine($"タイトル：{s.Title} 価格：{s.Price}円"));
 
             //6-2-7
             Console.WriteLine("\n---6.2.7---");
-            books.Where(s => s.Title.Contains("C#") && s.Pages <= 500).ToList().ForEach(s => Console.WriteLine(s.Title));
+            books.Where(s => s.Title.Contains("C#") && s.Pages <= 500).ToList().ForEach(s => Console.WriteLine($"タイトル：{s.Title}"));
+            Console.WriteLine();
 
-
+            #endregion
         }
     }
 }
