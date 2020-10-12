@@ -56,11 +56,26 @@ namespace Chapter6
                 new Book { Title = "楽しいC#プログラミング教室", Price = 2540, Pages = 348 },
             };
 
+            //すべての書籍で「C#」の文字がいくつあるかをカウントする
+            int count = 0;
+
+            foreach (var book in books.Where(b=>b.Title.Contains("C#")))
+            {
+                for (int i = 0; i < book.Title.Length-1; i++)
+                {
+                    if ((book.Title[i] == 'C') && (book.Title[i+1]=='#'))
+                    {
+                        count++;
+                    }
+                }
+            }
+            Console.WriteLine($"文字列「C#」の個数は{count}です。");
+
             //6-2-1
             Console.WriteLine("\n---6.2.1---");
-            var book = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
-            if(book != null)
-                Console.WriteLine($"価格：{book.Price}円　ページ数：{book.Pages}");
+            var book1 = books.FirstOrDefault(s => s.Title == "ワンダフル・C#ライフ");
+            if(book1 != null)
+                Console.WriteLine($"価格：{book1.Price}円　ページ数：{book1.Pages}");
 
             //6-2-2
             Console.WriteLine("\n---6.2.2---");
@@ -74,7 +89,7 @@ namespace Chapter6
             //6-2-4
             Console.WriteLine("\n---6.2.4---");
             var booktt = books.FirstOrDefault(s => s.Price >= 4000).Title;
-            if (book != null)
+            if (book1 != null)
                 Console.WriteLine(booktt);
 
             //6-2-5
