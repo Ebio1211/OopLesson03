@@ -12,85 +12,38 @@ namespace Chapter7
     {
         static void Main(string[] args)
         {
-            DuplicateKey();
 
             //7-1
-            //var lines = new Dictionary<int, List<string>>() { };
-            //string line = "Cozy lummox gives smart squid who asks for job pen";
-            //Console.WriteLine("---7.1.1---");
-            //int i = 0;
-            //foreach (var item in line)
-            //{
-            //    var key = i++;
-            //    var value = line.Skip(i).Take(1);
-            //    lines[key] = new List<string> { value.ToString() };
-
-            //}
-            
-
+            var text = "Cozy lummox gives smart squid who asks for job pen";
+            Exercise1_1(text); //問題7.1.1
         }
-        static public void DuplicateKey()
+
+        static void Exercise1_1(string text)
         {
-            Console.WriteLine("********************");
-            Console.WriteLine("*辞書登録プログラム*");
-            Console.WriteLine("********************");
-            var dict = new Dictionary<string, List<string>>() { };
-            string selectdict;
-            bool strer;
-
-            do
+            //var dict = new Dictionary<char, int>();
+            var dict = new SortedDictionary<char, int>();
+            foreach (var ch in text)
             {
-                Console.WriteLine("1. 登録　2. 内容を表示　3. 終了");
-                Console.Write("\n>");
-                selectdict = Console.ReadLine();
-                do
+                char upc = char.ToUpper(ch);
+                if ('A'<= upc && upc <= 'Z')
                 {
-                    if (selectdict =="1"|| selectdict=="2"||selectdict=="3")
+                    if (dict.ContainsKey(upc))
                     {
-                        strer = true;
+                        //登録済み
+                        dict[upc]++;
                     }
                     else
                     {
-                        strer = false;
-                        Console.WriteLine("1. 登録　2. 内容を表示　3. 終了");
-                        Console.Write(">");
-                        selectdict = Console.ReadLine();
-                    }
-                } while (strer == false);
-                if (selectdict == "1")
-                {
-                    Console.Write("\nKeyを入力：");
-                    var key = Console.ReadLine();
-                    Console.Write("valueを入力：");
-                    var value = Console.ReadLine();
-                    if (dict.ContainsKey(key))
-                    {
-                        dict[key].Add(value);
-                    }
-                    else
-                    {
-                        dict[key] = new List<string> { value };
-                    }
-
-                    Console.Write("登録しました！\n");
-                }
-                if (selectdict == "2")
-                {
-                    Console.WriteLine();
-                    foreach (var item in dict)
-                    {
-                        foreach (var term in item.Value)
-                        {
-                            Console.WriteLine("{0} : {1}", item.Key, term);
-                        }
+                        //未登録
+                        dict[upc] = 1;
                     }
                 }
-                if (selectdict == "3")
-                {
-                    Console.WriteLine("\nプログラムを終了します");
-                    break;
-                }
-            } while (selectdict == "1" || selectdict == "2");
+            }
+            foreach (var item in dict)
+            {
+                Console.WriteLine($"{item.Key}:{item.Value}");
+            }
+            
         }
     }
 }
