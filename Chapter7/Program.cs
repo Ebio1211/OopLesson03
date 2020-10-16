@@ -14,7 +14,19 @@ namespace Chapter7
         {
             DuplicateKey();
 
+            //7-1
+            //var lines = new Dictionary<int, List<string>>() { };
+            //string line = "Cozy lummox gives smart squid who asks for job pen";
+            //Console.WriteLine("---7.1.1---");
+            //int i = 0;
+            //foreach (var item in line)
+            //{
+            //    var key = i++;
+            //    var value = line.Skip(i).Take(1);
+            //    lines[key] = new List<string> { value.ToString() };
 
+            //}
+            
 
         }
         static public void DuplicateKey()
@@ -24,17 +36,27 @@ namespace Chapter7
             Console.WriteLine("********************");
             var dict = new Dictionary<string, List<string>>() { };
             string selectdict;
+            bool strer;
 
             do
             {
-                Console.Write("\n1. 登録　2. 内容を表示　3. 終了");
+                Console.WriteLine("1. 登録　2. 内容を表示　3. 終了");
                 Console.Write("\n>");
                 selectdict = Console.ReadLine();
-                while (string.IsNullOrWhiteSpace(selectdict))
+                do
                 {
-                    Console.Write(">");
-                    selectdict = Console.ReadLine();
-                }
+                    if (selectdict =="1"|| selectdict=="2"||selectdict=="3")
+                    {
+                        strer = true;
+                    }
+                    else
+                    {
+                        strer = false;
+                        Console.WriteLine("1. 登録　2. 内容を表示　3. 終了");
+                        Console.Write(">");
+                        selectdict = Console.ReadLine();
+                    }
+                } while (strer == false);
                 if (selectdict == "1")
                 {
                     Console.Write("\nKeyを入力：");
@@ -69,9 +91,6 @@ namespace Chapter7
                     break;
                 }
             } while (selectdict == "1" || selectdict == "2");
-
-            
-
         }
     }
 }
