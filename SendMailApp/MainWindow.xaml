@@ -22,22 +22,22 @@
         
         <TextBlock Text="件名：" 
                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbTitle" Grid.Column="1" Margin="4"/>
+        <TextBox x:Name="tbTitle" Grid.Column="1" Margin="4" FontSize="20"/>
 
         <TextBlock Grid.Row="1" Text="To："
                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbTo" Grid.Row="1" Grid.Column="1" Margin="4"/>
+        <TextBox x:Name="tbTo" Grid.Row="1" Grid.Column="1" Margin="4" FontSize="20"/>
         
         <TextBlock Grid.Row="2" Text="Cc：" 
                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbCc" Grid.Row="2" Grid.Column="1" Margin="4"/>
+        <TextBox x:Name="tbCc" Grid.Row="2" Grid.Column="1" Margin="4" FontSize="20"/>
 
         <TextBlock Grid.Row="3" Text="Bcc：" 
                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="4"/>
+        <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="4" FontSize="20"/>
         
         <TextBlock Grid.Row="4" Text="本文：" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="4" FontSize="20"/>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" 
                     Orientation="Horizontal" HorizontalAlignment="Right" >
