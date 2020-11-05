@@ -47,7 +47,22 @@ namespace SendMailApp
         {
             try
             {
-                MailMessage msg = new MailMessage("ojsinfosys01@gmail.com", tbTo.Text);
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("ojsinfosys01@gmail.com");
+
+                foreach (var item in tbTo.Text.Split(','))
+                {
+                    msg.To.Add(item);
+                }
+
+                if (!string.IsNullOrWhiteSpace(tbCc.Text))
+                {
+                    foreach (var item in tbCc.Text.Split(','))
+                    {
+                        msg.To.Add(item);
+                    }
+                }
+
 
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
