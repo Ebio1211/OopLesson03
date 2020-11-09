@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace SendMailApp
 {
@@ -68,8 +70,26 @@ namespace SendMailApp
             this.PassWord = passWord;
             this.Port = port;
             this.Ssl = ssl;
-
             return true;
+        }
+
+        public void Serialise() //シリアル化
+        {
+            using(var writer = XmlWriter.Create("Config.xml"))
+            {
+                var serializer = new XmlSerializer(Config.GetInstance().GetType());
+                serializer.Serialize(writer, Config.GetInstance());
+            }
+        }
+
+        public void DeSerialise()   //逆シリアル化
+        {
+            using (var reader = XmlReader.Create("Config.xml"))
+            {
+                var serializer = new XmlSerializer(typeof(Config));
+                serializer.Deserialize(reader);
+                
+            }
         }
 
     }
