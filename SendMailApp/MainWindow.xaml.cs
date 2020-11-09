@@ -95,7 +95,14 @@ namespace SendMailApp
 
         private void Window_Closed(object sender, EventArgs e)  //シリアル化
         {
-            Config.GetInstance().Serialise();
+            try
+            {
+                Config.GetInstance().Serialise();
+            }
+            catch (Exception)
+            {
+            }
+            
         }
     }
 }

@@ -87,7 +87,7 @@ namespace SendMailApp
             using (var reader = XmlReader.Create("Config.xml"))
             {
                 var serializer = new XmlSerializer(typeof(Config));
-                serializer.Deserialize(reader);
+                Config.instance = serializer.Deserialize(reader) as Config;
                 
             }
         }
