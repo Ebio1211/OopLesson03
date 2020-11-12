@@ -77,37 +77,22 @@ namespace SendMailApp
 
         public void Serialise() //シリアル化
         {
-            try
+            using (var writer = XmlWriter.Create("Config.xml"))
             {
-                using (var writer = XmlWriter.Create("Config.xml"))
-                {
-                    var serializer = new XmlSerializer(Config.GetInstance().GetType());
-                    serializer.Serialize(writer, Config.GetInstance());
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("保存できません");
+                var serializer = new XmlSerializer(Config.GetInstance().GetType());
+                serializer.Serialize(writer, Config.GetInstance());
             }
 
         }
 
         public void DeSerialise()   //逆シリアル化
         {
-            try
+            using (var reader = XmlReader.Create("Config.xml"))
             {
-                using (var reader = XmlReader.Create("Config.xml"))
-                {
-                    var serializer = new XmlSerializer(typeof(Config));
-                    Config.instance = serializer.Deserialize(reader) as Config;
-
-                }
+                var serializer = new XmlSerializer(typeof(Config));
+                Config.instance = serializer.Deserialize(reader) as Config;
+            
             }
-            catch (Exception)
-            {
-                Console.WriteLine("保存できません");
-            }
-
         }
 
     }

@@ -72,7 +72,6 @@ namespace SendMailApp
         string.IsNullOrWhiteSpace(tbPassWord.ToString()) || string.IsNullOrWhiteSpace(tbUserName.Text) ||
             string.IsNullOrWhiteSpace(tbPort.Text))
             {
-                
                 return false;
             }
             else
@@ -89,7 +88,7 @@ namespace SendMailApp
                                     || tbPassWord.Password != cf.PassWord || tbUserName.Text != cf.MailAddress
                                                || int.Parse(tbPort.Text) != cf.Port || CbSsl.IsChecked != cf.Ssl)
             {
-                MessageBoxResult result = MessageBox.Show("変更を保存しますか？", "警告", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("変更が反映されてません", "警告", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     btOk_Click(sender, e);  //更新処理
