@@ -73,23 +73,41 @@ namespace SendMailApp
             return true;
         }
 
+
+
         public void Serialise() //シリアル化
         {
-            using(var writer = XmlWriter.Create("Config.xml"))
+            try
             {
-                var serializer = new XmlSerializer(Config.GetInstance().GetType());
-                serializer.Serialize(writer, Config.GetInstance());
+                using (var writer = XmlWriter.Create("Config.xml"))
+                {
+                    var serializer = new XmlSerializer(Config.GetInstance().GetType());
+                    serializer.Serialize(writer, Config.GetInstance());
+                }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("保存できません");
+            }
+
         }
 
         public void DeSerialise()   //逆シリアル化
         {
-            using (var reader = XmlReader.Create("Config.xml"))
+            try
             {
-                var serializer = new XmlSerializer(typeof(Config));
-                Config.instance = serializer.Deserialize(reader) as Config;
-                
+                using (var reader = XmlReader.Create("Config.xml"))
+                {
+                    var serializer = new XmlSerializer(typeof(Config));
+                    Config.instance = serializer.Deserialize(reader) as Config;
+
+                }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("保存できません");
+            }
+
         }
 
     }

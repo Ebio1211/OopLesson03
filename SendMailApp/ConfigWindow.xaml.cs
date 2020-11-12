@@ -27,7 +27,7 @@ namespace SendMailApp
         //初期値を表示
         private void btDefault_Click(object sender, RoutedEventArgs e)
         {
-            Config cf = (Config.GetInstance()).getDefaultStatus();
+            Config cf = Config.GetInstance().getDefaultStatus();
 
             tbSmtp.Text = cf.Smtp;
             tbPort.Text = cf.Port.ToString();
@@ -40,25 +40,71 @@ namespace SendMailApp
         //適用（更新）
         private void btApply_Click(object sender, RoutedEventArgs e)
         {
-            Config.GetInstance().UpdateStatus(
-                tbSmtp.Text, 
-                tbSender.Text,
-                tbPassWord.Password,
-                int.Parse(tbPort.Text),
-                CbSsl.IsChecked ?? false);    //更新処理を呼び出す
+            if (WhiteSpaceJudge())
+            {
+                Config.GetInstance().UpdateStatus(
+                    tbSmtp.Text,
+                    tbSender.Text,
+                    tbPassWord.Password,
+                    int.Parse(tbPort.Text),
+                    CbSsl.IsChecked ?? false);    //更新処理を呼び出す
+            }
+            else
+            {
+                MessageBox.Show("未入力の項目があります。");
+            }
+
         }
 
         //OK
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
             btApply_Click(sender, e);   //更新処理を呼び出す
-            this.Close();
+            if(WhiteSpaceJudge())
+                this.Close();
+                
+        }
+
+        //未入力の項目があるか判定
+        public bool WhiteSpaceJudge()
+        {
+            if (string.IsNullOrWhiteSpace(tbSmtp.Text) || string.IsNullOrWhiteSpace(tbSender.Text) ||
+        string.IsNullOrWhiteSpace(tbPassWord.ToString()) || string.IsNullOrWhiteSpace(tbUserName.Text) ||
+            string.IsNullOrWhiteSpace(tbPort.Text))
+            {
+                
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         //キャンセル
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Config cf = Config.GetInstance();
+            if (tbSmtp.Text != cf.Smtp || tbSender.Text !=cf.MailAddress
+                                    || tbPassWord.Password != cf.PassWord || tbUserName.Text != cf.MailAddress
+                                               || int.Parse(tbPort.Text) != cf.Port || CbSsl.IsChecked != cf.Ssl)
+            {
+                MessageBoxResult result = MessageBox.Show("変更を保存しますか？", "警告", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    btOk_Click(sender, e);  //更新処理
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    this.Close();
+                }
+
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         //ロード時に一度だけ呼び出される
@@ -70,7 +116,6 @@ namespace SendMailApp
             tbSender.Text = tbUserName.Text = cf.MailAddress;
             tbPassWord.Password = cf.PassWord;
             CbSsl.IsChecked = cf.Ssl;
-
         }
     }
 }
