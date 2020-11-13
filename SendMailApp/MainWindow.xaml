@@ -12,39 +12,49 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="214*"/>
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Text="件名：" 
-                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbTitle" Grid.Column="1" Margin="4" FontSize="20"/>
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,4,5" FontSize="20"/>
+        <TextBox x:Name="tbTitle" Grid.Column="1" Margin="4" FontSize="20" Grid.ColumnSpan="2"/>
 
         <TextBlock Grid.Row="1" Text="To："
-                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbTo" Grid.Row="1" Grid.Column="1" Margin="4" FontSize="20"/>
-        
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,3,5" FontSize="20"/>
+        <TextBox x:Name="tbTo" Grid.Row="1" Grid.Column="1" Margin="4" FontSize="20" Grid.ColumnSpan="2"/>
+
         <TextBlock Grid.Row="2" Text="Cc：" 
-                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbCc" Grid.Row="2" Grid.Column="1" Margin="4" FontSize="20"/>
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,4,5" FontSize="20"/>
+        <TextBox x:Name="tbCc" Grid.Row="2" Grid.Column="1" Margin="4" FontSize="20" Grid.ColumnSpan="2"/>
 
         <TextBlock Grid.Row="3" Text="Bcc：" 
-                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="4" FontSize="20"/>
-        
-        <TextBlock Grid.Row="4" Text="本文：" HorizontalAlignment="Right" Margin="4" FontSize="20"/>
-        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="4" FontSize="20"/>
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,4,5" FontSize="20"/>
+        <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="4" FontSize="20" Grid.ColumnSpan="2"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" 
+        <TextBlock Grid.Row="4" Text="本文：" HorizontalAlignment="Right" Margin="0,4,4,4" FontSize="20"/>
+        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="4" FontSize="20" Grid.ColumnSpan="2"/>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Right">
+            <TextBlock Grid.Row="5" Text="添付ファイル：" FontSize="15"/>
+            <Button x:Name="btFileOpen" Content="追加" Margin="4" Click="btFileOpen_Click"/>
+            <Button x:Name="btDelete" Content="削除" Margin="4"/>
+        </StackPanel>
+        
+        <ListBox x:Name="addfile" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" Margin="4,0"/>
+        
+        <StackPanel Grid.Column="2" Grid.Row="6" 
                     Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="btCancel" Content="キャンセル" Margin="5" Width="100" Height="Auto" Click="btCancel_Click"/>
             <Button x:Name="btOk" Content="送信" Margin="5" Width="100" Height="Auto" Click="btOk_Click"/>
         </StackPanel>
-        <Button x:Name="btConfig" Grid.Row="5" Margin="13,8" Content="設定" Click="btConfig_Click"/>
+        <Button x:Name="btConfig" Grid.Row="6" Margin="13,8" Content="設定" Click="btConfig_Click"/>
 
 
     </Grid>

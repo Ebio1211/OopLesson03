@@ -69,7 +69,7 @@ namespace SendMailApp
         public bool WhiteSpaceJudge()
         {
             if (string.IsNullOrWhiteSpace(tbSmtp.Text) || string.IsNullOrWhiteSpace(tbSender.Text) ||
-        string.IsNullOrWhiteSpace(tbPassWord.ToString()) || string.IsNullOrWhiteSpace(tbUserName.Text) ||
+        string.IsNullOrWhiteSpace(tbPassWord.Password.ToString()) || string.IsNullOrWhiteSpace(tbUserName.Text) ||
             string.IsNullOrWhiteSpace(tbPort.Text))
             {
                 return false;
@@ -83,27 +83,27 @@ namespace SendMailApp
         //キャンセル
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
+            Cancel_Judge();
+        }
+
+        //変更されたか判定する
+        public void Cancel_Judge()
+        {
             Config cf = Config.GetInstance();
-            if (tbSmtp.Text != cf.Smtp || tbSender.Text !=cf.MailAddress
+            if (tbSmtp.Text != cf.Smtp || tbSender.Text != cf.MailAddress
                                     || tbPassWord.Password != cf.PassWord || tbUserName.Text != cf.MailAddress
                                                || int.Parse(tbPort.Text) != cf.Port || CbSsl.IsChecked != cf.Ssl)
             {
-                MessageBoxResult result = MessageBox.Show("変更が反映されてません", "警告", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    btOk_Click(sender, e);  //更新処理
-                }
-                else if (result == MessageBoxResult.No)
+                MessageBoxResult result = MessageBox.Show("変更が反映されてません", "警告", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
                 {
                     this.Close();
                 }
-
             }
             else
             {
                 this.Close();
             }
-            
         }
 
         //ロード時に一度だけ呼び出される

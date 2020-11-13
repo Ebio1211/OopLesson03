@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -121,6 +122,21 @@ namespace SendMailApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        //ファイルを追加
+        private void btFileOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var fod = new OpenFileDialog();
+            if (fod.ShowDialog() == true)
+            {
+                addfile.Items.Clear();
+
+                foreach (var newfile in fod.FileName)
+                {
+                }
             }
             
         }
