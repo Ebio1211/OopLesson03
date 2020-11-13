@@ -130,15 +130,21 @@ namespace SendMailApp
         private void btFileOpen_Click(object sender, RoutedEventArgs e)
         {
             var fod = new OpenFileDialog();
+            fod.Multiselect = true;
             if (fod.ShowDialog() == true)
             {
-                addfile.Items.Clear();
-
-                foreach (var newfile in fod.FileName)
+                foreach (var filepath in fod.FileNames)
                 {
+                    addfile.Items.Add(filepath);
                 }
+                
             }
             
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

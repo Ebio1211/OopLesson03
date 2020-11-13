@@ -44,7 +44,7 @@
         <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Right">
             <TextBlock Grid.Row="5" Text="添付ファイル：" FontSize="15"/>
             <Button x:Name="btFileOpen" Content="追加" Margin="4" Click="btFileOpen_Click"/>
-            <Button x:Name="btDelete" Content="削除" Margin="4"/>
+            <Button x:Name="btDelete" Content="削除" Margin="4" Click="btDelete_Click"/>
         </StackPanel>
         
         <ListBox x:Name="addfile" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" Margin="4,0"/>
