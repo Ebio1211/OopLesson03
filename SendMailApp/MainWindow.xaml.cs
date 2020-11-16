@@ -25,7 +25,7 @@ namespace SendMailApp
     public partial class MainWindow : Window
     {
         SmtpClient sc = new SmtpClient();
-        Config config = Config.GetInstance();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace SendMailApp
         //メール送信処理
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
-            
+            Config config = Config.GetInstance();
             try
             {
                 MailMessage msg = new MailMessage(config.MailAddress, tbTo.Text);
@@ -61,10 +61,17 @@ namespace SendMailApp
                 msg.Body = tbBody.Text; //本文
 
                 
+
+                
                 sc.Host = config.Smtp; //SMTPサーバーの設定
                 sc.Port = config.Port;
                 sc.EnableSsl = config.Ssl;
                 sc.Credentials = new NetworkCredential(config.MailAddress, config.PassWord);
+
+                if (addfile.Items != null)
+                {
+                    
+                }
 
                 //sc.Send(msg); //送信
                 sc.SendMailAsync(msg);
@@ -144,7 +151,8 @@ namespace SendMailApp
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            addfile.Items.Remove(addfile.SelectedItem);
+            
         }
     }
 }
