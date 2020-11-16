@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,18 +61,27 @@ namespace SendMailApp
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
 
+                //添付ファイル
+                foreach (var item in addfile.Items)
+                {
+                    try
+                    {
+                        msg.Attachments.Add(new Attachment(item.ToString()));
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                    }
+                }
                 
 
-                
+
                 sc.Host = config.Smtp; //SMTPサーバーの設定
                 sc.Port = config.Port;
                 sc.EnableSsl = config.Ssl;
                 sc.Credentials = new NetworkCredential(config.MailAddress, config.PassWord);
 
-                if (addfile.Items != null)
-                {
-                    
-                }
+                
 
                 //sc.Send(msg); //送信
                 sc.SendMailAsync(msg);
